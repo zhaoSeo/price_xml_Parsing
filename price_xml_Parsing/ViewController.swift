@@ -11,11 +11,11 @@ import UIKit
 class ViewController: UIViewController, XMLParserDelegate, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var myTableView: UITableView!
-    var item:[String:String] = [:]
-    var elements:[[String:String]] = [] //파싱한 데이터 삽입.
+    var item:[String:String] = [:] // currentElement가 모여서 하나의 배열 item
+    var elements:[[String:String]] = [] //item의 배열이 모여서 elements
     var currentElement = ""
     let parseKey = "rpHjQEu9lGtZuqi2664U%2B4dAORmvzIgLiBuy%2F%2F4kxrKcU0%2BqSW1Vmd%2FJUoZurDsKC8tnZtyOLw5onrjVqQnuxg%3D%3D"
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
