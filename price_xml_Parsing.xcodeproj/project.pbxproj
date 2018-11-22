@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FE49AA1221A537F500E2A0E6 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE49AA1121A537F500E2A0E6 /* TableViewController.swift */; };
 		FE49C51021A2904A0074C2E4 /* PriceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE49C50F21A2904A0074C2E4 /* PriceData.swift */; };
 		FE49C51821A43AAE0074C2E4 /* PriceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE49C51721A43AAE0074C2E4 /* PriceTableViewCell.swift */; };
 		FEF7C72A21992CAF0087DB2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF7C72921992CAF0087DB2E /* AppDelegate.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FE49AA1121A537F500E2A0E6 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		FE49C50F21A2904A0074C2E4 /* PriceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceData.swift; sourceTree = "<group>"; };
 		FE49C51721A43AAE0074C2E4 /* PriceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceTableViewCell.swift; sourceTree = "<group>"; };
 		FEF7C72621992CAF0087DB2E /* price_xml_Parsing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = price_xml_Parsing.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,6 +108,7 @@
 				FEF7C72B21992CAF0087DB2E /* ViewController.swift */,
 				FE49C50F21A2904A0074C2E4 /* PriceData.swift */,
 				FEF7C72D21992CAF0087DB2E /* Main.storyboard */,
+				FE49AA1121A537F500E2A0E6 /* TableViewController.swift */,
 				FEF7C73021992CB20087DB2E /* Assets.xcassets */,
 				FEF7C73221992CB20087DB2E /* LaunchScreen.storyboard */,
 				FEF7C73521992CB20087DB2E /* Info.plist */,
@@ -265,6 +268,7 @@
 				FEF7C72C21992CAF0087DB2E /* ViewController.swift in Sources */,
 				FE49C51821A43AAE0074C2E4 /* PriceTableViewCell.swift in Sources */,
 				FEF7C72A21992CAF0087DB2E /* AppDelegate.swift in Sources */,
+				FE49AA1221A537F500E2A0E6 /* TableViewController.swift in Sources */,
 				FE49C51021A2904A0074C2E4 /* PriceData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
