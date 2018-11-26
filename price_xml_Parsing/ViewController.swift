@@ -16,11 +16,11 @@ class ViewController: UIViewController, XMLParserDelegate, UITableViewDelegate, 
     var elements:[[String:String]] = [] //item의 배열이 모여서 elements
     var currentElement = ""
     let parseKey = "rpHjQEu9lGtZuqi2664U%2B4dAORmvzIgLiBuy%2F%2F4kxrKcU0%2BqSW1Vmd%2FJUoZurDsKC8tnZtyOLw5onrjVqQnuxg%3D%3D"
-    var examin_de = ""
     var Data: PriceData?
     var Datas: Array = [PriceData]()
     var filteredData: Array = [PriceData]()
     var image: String?
+    
     let subject:[String:String] = [
         "쌀" : "01",
         "찹쌀" : "02",
@@ -80,7 +80,9 @@ class ViewController: UIViewController, XMLParserDelegate, UITableViewDelegate, 
         "건멸치" : "61",
         "갈치" : "63",
         "미나리" : "64",
-        "방울토마토" : "65"
+        "방울토마토" : "65",
+        "닭고기" : "66",
+        "계란" : "67"
     ]
     
     override func viewDidLoad() {
@@ -88,7 +90,12 @@ class ViewController: UIViewController, XMLParserDelegate, UITableViewDelegate, 
         // Do any additional setup after loading the view, typically from a nib.
         myTableView.delegate = self
         myTableView.dataSource = self
-        let strURL = "http://apis.data.go.kr/B552895/LocalGovPriceInfoService/getItemPriceResearchSearch?serviceKey=\(parseKey)&examin_de=20181104&&numOfRows=300&pageNo=1&examin_area_nm=%EB%B6%80%EC%82%B0"
+        self.title = "부산농산물가격정보"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyyMMdd"
+        let theDayBeforeYesterday = NSDate().addingTimeInterval(-24 * 60 * 60 * 2 )
+        let convertedDate = dateFormatter.string(from: theDayBeforeYesterday as Date)
+        let strURL = "http://apis.data.go.kr/B552895/LocalGovPriceInfoService/getItemPriceResearchSearch?serviceKey=\(parseKey)&examin_de=\(convertedDate)&numOfRows=300&pageNo=1&examin_area_nm=%EB%B6%80%EC%82%B0"
         searchBar.delegate = self
         searchBar.returnKeyType = UIReturnKeyType.done
         if NSURL(string: strURL) != nil {
@@ -132,9 +139,6 @@ class ViewController: UIViewController, XMLParserDelegate, UITableViewDelegate, 
         print("Datas = \(Datas)")
         filteredData = Datas
     }
-//    func setUp() {
-//        filteredData = elements
-//    }
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         currentElement = elementName
 //        print("currentElement = \(elementName)")
@@ -149,6 +153,7 @@ class ViewController: UIViewController, XMLParserDelegate, UITableViewDelegate, 
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if elementName == "item" {
             elements.append(item)
+//            print(item)
         }
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
