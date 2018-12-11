@@ -18,7 +18,7 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     var Data: PriceData? //item + image = Data
     var Datas: Array = [PriceData]() //Datas = [Data + Data + ...]
     var image: String?
-    
+    var condition = ""
     let subject:[String:String] = [
         "쌀" : "01",
         "찹쌀" : "02",
@@ -107,55 +107,6 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         parse()
         putImageInData()
     }
-    //Mark : make collectionView
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imgArray.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainCollectionViewCell", for: indexPath) as! MainCollectionViewCell
-        cell.myImageView.image = imgArray[indexPath.row]
-        cell.imgName.text! = nameArray[indexPath.row]
-        
-        return cell
-    }
-    //Mark : pass over to DetailViewController
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let desVC = mainStoryboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-        desVC.PassingOverDatas = Datas
-        self.navigationController?.pushViewController(desVC, animated: true)
-        
-    }
-    // MARK: put Image in Data
-    func putImageInData() {
-        for item in elements {
-            let productNm = item["prdlst_nm"]
-            //            print("prdlst_nm = \(String(describing: productNm))")
-            // 추가 데이터 처리 addrs주소
-            for (key, value) in subject {
-                if key == productNm {
-                    image = value
-                }
-            }
-            let prdlstDetailNm = item["prdlst_detail_nm"]
-            let grade = item["grad"]
-            let weight = item["stndrd"]
-            let distributePrice = item["distb_step"]
-            let price = item["examin_amt"]
-            let examinDay = item["examin_de"]
-            //            print("prdlstDetailNm = \(String(describing: prdlstDetailNm))")
-            //            print("grad = \(String(describing: grade))")
-            //            print("stndrd = \(String(describing: weight))")
-            //            print("distb_step = \(String(describing: distributePrice))")
-            //            print("prdlst_nm = \(String(describing: price))")
-            //            print("examin_de = \(String(describing: examinDay))")
-            Data =
-                PriceData(productNm: productNm!, prdlstDetailNm: prdlstDetailNm!, grade: grade!, weight: weight!, distributePrice: distributePrice!, price: price!, image: image!, examinDay: examinDay!)
-            //            print("Data = \(String(describing: Data))")
-            Datas.append(Data!)
-        }
-    }
     // MARK: Parsing Start
     func parse() {
         let dateFormatter = DateFormatter()
@@ -240,5 +191,56 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
             elements.append(item)
             //            print(item)
         }
+    }
+    // MARK: put Image in Data
+    func putImageInData() {
+        for item in elements {
+            let productNm = item["prdlst_nm"]
+            //            print("prdlst_nm = \(String(describing: productNm))")
+            // 추가 데이터 처리 addrs주소
+            for (key, value) in subject {
+                if key == productNm {
+                    image = value
+                }
+            }
+            let prdlstDetailNm = item["prdlst_detail_nm"]
+            let grade = item["grad"]
+            let weight = item["stndrd"]
+            let distributePrice = item["distb_step"]
+            let price = item["examin_amt"]
+            let examinDay = item["examin_de"]
+            //            print("prdlstDetailNm = \(String(describing: prdlstDetailNm))")
+            //            print("grad = \(String(describing: grade))")
+            //            print("stndrd = \(String(describing: weight))")
+            //            print("distb_step = \(String(describing: distributePrice))")
+            //            print("prdlst_nm = \(String(describing: price))")
+            //            print("examin_de = \(String(describing: examinDay))")
+            Data =
+                PriceData(productNm: productNm!, prdlstDetailNm: prdlstDetailNm!, grade: grade!, weight: weight!, distributePrice: distributePrice!, price: price!, image: image!, examinDay: examinDay!)
+            //            print("Data = \(String(describing: Data))")
+            Datas.append(Data!)
+        }
+    }
+    
+    //Mark : make collectionView
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return imgArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainCollectionViewCell", for: indexPath) as! MainCollectionViewCell
+        cell.myImageView.image = imgArray[indexPath.row]
+        cell.imgName.text! = nameArray[indexPath.row]
+        
+        return cell
+    }
+    //Mark : pass over to DetailViewController
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let desVC = mainStoryboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+        desVC.PassingOverDatas = Datas
+        desVC.name = nameArray[indexPath.row]
+        self.navigationController?.pushViewController(desVC, animated: true)
+        
     }
 }

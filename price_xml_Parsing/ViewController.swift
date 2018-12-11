@@ -15,17 +15,42 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
    
     var filteredData: Array = [PriceData]()
     var PassingOverDatas: Array = [PriceData]()
+    var name = ""
     // MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         myTableView.delegate = self
         myTableView.dataSource = self
+        searchBar.delegate = self
+        searchBar.returnKeyType = UIReturnKeyType.done
         self.title = "부산농산물가격정보"
 //        print("Datas = \(Datas)")
         filteredData = PassingOverDatas
-        searchBar.delegate = self
-        searchBar.returnKeyType = UIReturnKeyType.done
+
+        print(name)
+        filteredData = PassingOverDatas.filter({ Datas -> Bool in
+            switch searchBar.selectedScopeButtonIndex {
+            case 0:
+        if name == "전체" {
+            return true
+        } else if name == "곡류" {
+            return Datas.productNm.lowercased().contains("쌀")
+        } else if name == "과일" {
+            return Datas.productNm.lowercased().contains("귤")
+        } else if name == "생선" {
+            return Datas.productNm.lowercased().contains("고등어")
+        } else if name == "야채" {
+            return Datas.productNm.lowercased().contains("배추")
+        } else if name == "견과류" {
+            return Datas.productNm.lowercased().contains("땅콩")
+        }
+            return true
+            default:
+                return false
+            }
+        })
+         myTableView.reloadData()
     }
  
     // MARK: tableView
@@ -71,11 +96,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         filteredData = PassingOverDatas.filter({ Datas -> Bool in
             switch searchBar.selectedScopeButtonIndex {
             case 0:
-                if searchText.isEmpty { return true }
+                if searchText.isEmpty && name == "전체" {
+                    return true
+                }
                 return Datas.productNm.lowercased().contains(searchText.lowercased())
                     || Datas.prdlstDetailNm.lowercased().contains(searchText.lowercased())
                     || Datas.grade.lowercased().contains(searchText.lowercased())
                     || Datas.distributePrice.lowercased().contains(searchText.lowercased())
+                
             default:
                 return false
             }
