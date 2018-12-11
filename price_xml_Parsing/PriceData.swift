@@ -14,7 +14,8 @@ class PriceData {
     var distributePrice: String
     var price: String
     var image: String
-    init(productNm: String, prdlstDetailNm: String, grade: String, weight: String, distributePrice: String, price: String, image: String) {
+    var examinDay: String
+    init(productNm: String, prdlstDetailNm: String, grade: String, weight: String, distributePrice: String, price: String, image: String, examinDay: String) {
         self.productNm = productNm
         self.prdlstDetailNm = prdlstDetailNm
         self.grade = grade
@@ -22,6 +23,7 @@ class PriceData {
         self.distributePrice = distributePrice
         self.price = price
         self.image = image
+        self.examinDay = examinDay
     }
     
     //    convenience init() {

@@ -22,6 +22,7 @@ class PriceTableViewCell: UITableViewCell {
     @IBOutlet weak var weight: UILabel!
     @IBOutlet weak var distributePrice: UILabel!
     @IBOutlet weak var price: UILabel!
+    @IBOutlet weak var examinDay: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
