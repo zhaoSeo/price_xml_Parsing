@@ -10,6 +10,8 @@
 		FE49AA1221A537F500E2A0E6 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE49AA1121A537F500E2A0E6 /* TableViewController.swift */; };
 		FE49C51021A2904A0074C2E4 /* PriceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE49C50F21A2904A0074C2E4 /* PriceData.swift */; };
 		FE49C51821A43AAE0074C2E4 /* PriceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE49C51721A43AAE0074C2E4 /* PriceTableViewCell.swift */; };
+		FE8EA27A21BF82B0000CABE6 /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8EA27921BF82B0000CABE6 /* MainCollectionViewCell.swift */; };
+		FE8EA27C21BF833B000CABE6 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8EA27B21BF833B000CABE6 /* CollectionViewController.swift */; };
 		FEF7C72A21992CAF0087DB2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF7C72921992CAF0087DB2E /* AppDelegate.swift */; };
 		FEF7C72C21992CAF0087DB2E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF7C72B21992CAF0087DB2E /* ViewController.swift */; };
 		FEF7C72F21992CAF0087DB2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEF7C72D21992CAF0087DB2E /* Main.storyboard */; };
@@ -40,6 +42,8 @@
 		FE49AA1121A537F500E2A0E6 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		FE49C50F21A2904A0074C2E4 /* PriceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceData.swift; sourceTree = "<group>"; };
 		FE49C51721A43AAE0074C2E4 /* PriceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceTableViewCell.swift; sourceTree = "<group>"; };
+		FE8EA27921BF82B0000CABE6 /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
+		FE8EA27B21BF833B000CABE6 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		FEF7C72621992CAF0087DB2E /* price_xml_Parsing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = price_xml_Parsing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEF7C72921992CAF0087DB2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FEF7C72B21992CAF0087DB2E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -108,10 +112,12 @@
 				FEF7C72B21992CAF0087DB2E /* ViewController.swift */,
 				FE49C50F21A2904A0074C2E4 /* PriceData.swift */,
 				FEF7C72D21992CAF0087DB2E /* Main.storyboard */,
+				FE8EA27B21BF833B000CABE6 /* CollectionViewController.swift */,
 				FE49AA1121A537F500E2A0E6 /* TableViewController.swift */,
 				FEF7C73021992CB20087DB2E /* Assets.xcassets */,
 				FEF7C73221992CB20087DB2E /* LaunchScreen.storyboard */,
 				FEF7C73521992CB20087DB2E /* Info.plist */,
+				FE8EA27921BF82B0000CABE6 /* MainCollectionViewCell.swift */,
 			);
 			path = price_xml_Parsing;
 			sourceTree = "<group>";
@@ -266,8 +272,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FEF7C72C21992CAF0087DB2E /* ViewController.swift in Sources */,
+				FE8EA27A21BF82B0000CABE6 /* MainCollectionViewCell.swift in Sources */,
 				FE49C51821A43AAE0074C2E4 /* PriceTableViewCell.swift in Sources */,
 				FEF7C72A21992CAF0087DB2E /* AppDelegate.swift in Sources */,
+				FE8EA27C21BF833B000CABE6 /* CollectionViewController.swift in Sources */,
 				FE49AA1221A537F500E2A0E6 /* TableViewController.swift in Sources */,
 				FE49C51021A2904A0074C2E4 /* PriceData.swift in Sources */,
 			);

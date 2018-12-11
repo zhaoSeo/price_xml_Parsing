@@ -14,7 +14,7 @@ class ViewController: UIViewController, XMLParserDelegate, UITableViewDelegate, 
     @IBOutlet weak var myTableView: UITableView!
     var item:[String:String] = [:] // item = [currentData:data + currentData:data + ...]
     var elements:[[String:String]] = [] //element = [item + item + ...]
-    var currentElement = "" //
+    var currentElement = ""
     let parseKey = "rpHjQEu9lGtZuqi2664U%2B4dAORmvzIgLiBuy%2F%2F4kxrKcU0%2BqSW1Vmd%2FJUoZurDsKC8tnZtyOLw5onrjVqQnuxg%3D%3D"
     var Data: PriceData? //item + image = Data
     var Datas: Array = [PriceData]() //Datas = [Data + Data + ...]
@@ -107,14 +107,14 @@ class ViewController: UIViewController, XMLParserDelegate, UITableViewDelegate, 
         self.title = "부산농산물가격정보"
         parse()
         putImageInData()
-        print("Datas = \(Datas)")
+//        print("Datas = \(Datas)")
         filteredData = Datas
     }
     // MARK: put Image in Data
     func putImageInData() {
         for item in elements {
             let productNm = item["prdlst_nm"]
-            print("prdlst_nm = \(String(describing: productNm))")
+//            print("prdlst_nm = \(String(describing: productNm))")
             // 추가 데이터 처리 addrs주소
             for (key, value) in subject {
                 if key == productNm {
@@ -127,15 +127,15 @@ class ViewController: UIViewController, XMLParserDelegate, UITableViewDelegate, 
             let distributePrice = item["distb_step"]
             let price = item["examin_amt"]
             let examinDay = item["examin_de"]
-            print("prdlstDetailNm = \(String(describing: prdlstDetailNm))")
-            print("grad = \(String(describing: grade))")
-            print("stndrd = \(String(describing: weight))")
-            print("distb_step = \(String(describing: distributePrice))")
-            print("prdlst_nm = \(String(describing: price))")
-            print("examin_de = \(String(describing: examinDay))")
+//            print("prdlstDetailNm = \(String(describing: prdlstDetailNm))")
+//            print("grad = \(String(describing: grade))")
+//            print("stndrd = \(String(describing: weight))")
+//            print("distb_step = \(String(describing: distributePrice))")
+//            print("prdlst_nm = \(String(describing: price))")
+//            print("examin_de = \(String(describing: examinDay))")
             Data =
                 PriceData(productNm: productNm!, prdlstDetailNm: prdlstDetailNm!, grade: grade!, weight: weight!, distributePrice: distributePrice!, price: price!, image: image!, examinDay: examinDay!)
-            print("Data = \(String(describing: Data))")
+//            print("Data = \(String(describing: Data))")
             Datas.append(Data!)
         }
     }
@@ -155,10 +155,10 @@ class ViewController: UIViewController, XMLParserDelegate, UITableViewDelegate, 
         let strURL2 = "http://apis.data.go.kr/B552895/LocalGovPriceInfoService/getItemPriceResearchSearch?serviceKey=\(parseKey)&examin_de=\(convertedDate2)&numOfRows=300&pageNo=1&examin_area_nm=%EB%B6%80%EC%82%B0"
         let strURL3 = "http://apis.data.go.kr/B552895/LocalGovPriceInfoService/getItemPriceResearchSearch?serviceKey=\(parseKey)&examin_de=\(convertedDate3)&numOfRows=300&pageNo=1&examin_area_nm=%EB%B6%80%EC%82%B0"
         let strURL4 = "http://apis.data.go.kr/B552895/LocalGovPriceInfoService/getItemPriceResearchSearch?serviceKey=\(parseKey)&examin_de=\(convertedDate4)&numOfRows=300&pageNo=1&examin_area_nm=%EB%B6%80%EC%82%B0"
-        print(convertedDate1)
-        print(convertedDate2)
-        print(convertedDate3)
-        print(convertedDate4)
+//        print(convertedDate1)
+//        print(convertedDate2)
+//        print(convertedDate3)
+//        print(convertedDate4)
         searchBar.delegate = self
         searchBar.returnKeyType = UIReturnKeyType.done
         if NSURL(string: strURL1) != nil {
@@ -166,7 +166,7 @@ class ViewController: UIViewController, XMLParserDelegate, UITableViewDelegate, 
                 parser.delegate = self
                 if parser.parse() {
                     print("parsing success")
-                    print(elements)
+//                    print(elements)
                 } else {
                     print("parsing fail")
                 }
@@ -177,7 +177,7 @@ class ViewController: UIViewController, XMLParserDelegate, UITableViewDelegate, 
                 parser.delegate = self
                 if parser.parse() {
                     print("parsing success")
-                    print(elements)
+//                    print(elements)
                 } else {
                     print("parsing fail")
                 }
@@ -188,7 +188,7 @@ class ViewController: UIViewController, XMLParserDelegate, UITableViewDelegate, 
                 parser.delegate = self
                 if parser.parse() {
                     print("parsing success")
-                    print(elements)
+//                    print(elements)
                 } else {
                     print("parsing fail")
                 }
@@ -199,7 +199,7 @@ class ViewController: UIViewController, XMLParserDelegate, UITableViewDelegate, 
                 parser.delegate = self
                 if parser.parse() {
                     print("parsing success")
-                    print(elements)
+//                    print(elements)
                 } else {
                     print("parsing fail")
                 }
@@ -210,11 +210,11 @@ class ViewController: UIViewController, XMLParserDelegate, UITableViewDelegate, 
     // MARK: Parsing
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         currentElement = elementName
-        print("currentElement = \(elementName)")
+//        print("currentElement = \(elementName)")
     }
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         let data = string.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
-        print("data = \(data)")
+//        print("data = \(data)")
         if !data.isEmpty {
             item[currentElement] = data
         }
@@ -222,7 +222,7 @@ class ViewController: UIViewController, XMLParserDelegate, UITableViewDelegate, 
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if elementName == "item" {
             elements.append(item)
-            print(item)
+//            print(item)
         }
     }
     // MARK: tableView
