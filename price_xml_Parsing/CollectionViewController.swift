@@ -10,7 +10,7 @@ import UIKit
 
 class CollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, XMLParserDelegate  {
     
-    //Mark : make parsing Data
+    //MARK: make parsing Data
     var item:[String:String] = [:] // item = [currentData:data + currentData:data + ...]
     var elements:[[String:String]] = [] //element = [item + item + ...]
     var currentElement = ""
@@ -96,7 +96,7 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         "굵은소금" : "80"
         
     ]
-    //Mark : make collectionView Data
+    //MARK: make collectionView Data
     let imgArray = [UIImage(named: "1"),UIImage(named: "2"),UIImage(named: "3"),UIImage(named: "4"),UIImage(named: "5"),UIImage(named: "6")]
     let nameArray = ["전체", "곡류", "과일", "생선", "야채", "견과류"]
     
@@ -104,6 +104,7 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.title = "부산농산물가격정보"
         parse()
         putImageInData()
     }
@@ -115,14 +116,17 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         let theDayBeforeYesterday = NSDate().addingTimeInterval(-24 * 60 * 60 * 2 )
         let theDayThreeDayBefore = NSDate().addingTimeInterval(-24 * 60 * 60 * 3 )
         let theDayFourDayBefore = NSDate().addingTimeInterval(-24 * 60 * 60 * 4 )
+        let theDayFiveDayBefore = NSDate().addingTimeInterval(-24 * 60 * 60 * 5 )
         let convertedDate1 = dateFormatter.string(from: yesterday as Date)
         let convertedDate2 = dateFormatter.string(from: theDayBeforeYesterday as Date)
         let convertedDate3 = dateFormatter.string(from: theDayThreeDayBefore as Date)
         let convertedDate4 = dateFormatter.string(from: theDayFourDayBefore as Date)
+        let convertedDate5 = dateFormatter.string(from: theDayFiveDayBefore as Date)
         let strURL1 = "http://apis.data.go.kr/B552895/LocalGovPriceInfoService/getItemPriceResearchSearch?serviceKey=\(parseKey)&examin_de=\(convertedDate1)&numOfRows=300&pageNo=1&examin_area_nm=%EB%B6%80%EC%82%B0"
         let strURL2 = "http://apis.data.go.kr/B552895/LocalGovPriceInfoService/getItemPriceResearchSearch?serviceKey=\(parseKey)&examin_de=\(convertedDate2)&numOfRows=300&pageNo=1&examin_area_nm=%EB%B6%80%EC%82%B0"
         let strURL3 = "http://apis.data.go.kr/B552895/LocalGovPriceInfoService/getItemPriceResearchSearch?serviceKey=\(parseKey)&examin_de=\(convertedDate3)&numOfRows=300&pageNo=1&examin_area_nm=%EB%B6%80%EC%82%B0"
         let strURL4 = "http://apis.data.go.kr/B552895/LocalGovPriceInfoService/getItemPriceResearchSearch?serviceKey=\(parseKey)&examin_de=\(convertedDate4)&numOfRows=300&pageNo=1&examin_area_nm=%EB%B6%80%EC%82%B0"
+        let strURL5 = "http://apis.data.go.kr/B552895/LocalGovPriceInfoService/getItemPriceResearchSearch?serviceKey=\(parseKey)&examin_de=\(convertedDate5)&numOfRows=300&pageNo=1&examin_area_nm=%EB%B6%80%EC%82%B0"
         //        print(convertedDate1)
         //        print(convertedDate2)
         //        print(convertedDate3)
@@ -172,9 +176,20 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
                 }
             }
         }
+        if NSURL(string: strURL5) != nil {
+            if let parser = XMLParser(contentsOf: URL(string: strURL5)!) {
+                parser.delegate = self
+                if parser.parse() {
+                    print("parsing success")
+                    //                    print(elements)
+                } else {
+                    print("parsing fail")
+                }
+            }
+        }
     }
     
-    // MARK: Parsing
+    //MARK: Parsing
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         currentElement = elementName
         //        print("currentElement = \(elementName)")
@@ -192,7 +207,7 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
             //            print(item)
         }
     }
-    // MARK: put Image in Data
+    //MARK: put Image in Data
     func putImageInData() {
         for item in elements {
             let productNm = item["prdlst_nm"]
@@ -222,7 +237,7 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         }
     }
     
-    //Mark : make collectionView
+    //MARK: make collectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return imgArray.count
     }
@@ -234,7 +249,7 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         
         return cell
     }
-    //Mark : pass over to DetailViewController
+    //MARK: pass over to DetailViewController
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let desVC = mainStoryboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
