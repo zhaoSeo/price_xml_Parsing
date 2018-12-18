@@ -46,11 +46,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     Datas.productNm.lowercased().contains("메밀") ||
                     Datas.productNm.lowercased().contains("들깨")
                 } else if name == "과일" {
-                    return Datas.productNm.lowercased().contains("귤") ||
+                    return Datas.productNm.lowercased().contains("감귤") ||
                     Datas.productNm.lowercased().contains("고구마(밤)") ||
                     Datas.productNm.lowercased().contains("토마토") ||
                     Datas.productNm.lowercased().contains("사과") ||
-                    Datas.productNm.lowercased().contains("배") ||
                     Datas.productNm.lowercased().contains("바나나") ||
                     Datas.productNm.lowercased().contains("수박") ||
                     Datas.productNm.lowercased().contains("멜론") ||
